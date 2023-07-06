@@ -3,20 +3,36 @@
 import { useState } from "react";
 import QuizCard from "./components/QuizCard";
 import APIS from "./APIS";
-import { Difficulty } from "./APIS";
+import { QuestionState, Difficulty } from "./APIS";
+
+type AnswerObject = {
+  question: string;
+  answer: string;
+  correct: boolean;
+  correctAnswer: string;
+};
 
 const TOTAL_QUESTIONS = 10;
+
 function page() {
-  const [userAnswers, setUserAbswer] = useState([]);
-  const [questions, setQuestions] = useState([]);
+  const [userAnswers, setUserAbswer] = useState<AnswerObject[]>([]);
+  const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [gameOver, setGameOver] = useState(true);
   const [loading, setLoading] = useState(false);
   const [number, setNumber] = useState(0);
   const [score, setScore] = useState(0);
 
-  console.log(APIS(TOTAL_QUESTIONS, Difficulty.EASY));
+  const stratTrivia = async () => {
+    setLoading(true);
+    setGameOver(false);
 
-  const stratTrivia = async () => {};
+    const newQuestions = await APIS(TOTAL_QUESTIONS, Difficulty.EASY);
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAbswer([]);
+    setNumber(0);
+    setLoading(false);
+  };
 
   const checkAnswer = (e: React.MouseEventHandler<HTMLButtonElement>) => {};
 
