@@ -2,9 +2,9 @@ import ShuffeArray from "./utils/Shuff";
 
 export type Question = {
   category: string;
-  correct_answers: string;
+  correct_answer: string;
   difficulty: string;
-  incorrect_answer: string[];
+  incorrect_answers: string[];
   question: string;
   type: string;
 };
@@ -19,20 +19,14 @@ export enum Difficulty {
 const APIS = async (amount: number, difficulty: Difficulty) => {
   const endPoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
   const data = await (await fetch(endPoint)).json();
-  console.log(Object.values(data.results));
-  console.log(data.results);
 
-  //   return data.results.map((question: Question) => ({
-  //     ...question,
-  //     answers: ShuffeArray([
-  //       ...question.incorrect_answer,
-  //       question.correct_answers,
-  //     ]),
-  //   }));
-
-  return data.results.map((q: Question) => {
-    console.log(q);
-  });
+  return data.results.map((question: Question) => ({
+    ...question,
+    answers: ShuffeArray([
+      ...question.incorrect_answers,
+      question.correct_answer,
+    ]),
+  }));
 };
 
 export default APIS;
