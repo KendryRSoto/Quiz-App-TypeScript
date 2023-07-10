@@ -17,7 +17,7 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+          href="https://bootswatch.com/5/materia/bootstrap.min.css"
         />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       </head>

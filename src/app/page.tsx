@@ -39,6 +39,7 @@ function page() {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
       if (correct) setScore((prev) => prev + 1);
+      console.log(correct);
 
       const answerObject = {
         questions: questions[number].question,
@@ -61,14 +62,14 @@ function page() {
 
   return (
     <div className="container text-center">
-      <div className="justify-content-center">
+      <div className="justify-content-center grid gap-0 row-gap-3">
         <h1>QUIZZ</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className="button" onClick={stratTrivia}>
+          <button className="btn btn-primary m-2" onClick={stratTrivia}>
             Start
           </button>
         ) : null}
-        {!gameOver ? <p className="score">Score: {score} </p> : null}
+        {!gameOver ? <p className="score h4">Score: {score} </p> : null}
         {loading && <p>Loading Quistioz ...</p>}
         {!loading && !gameOver && (
           <QuizCard
@@ -84,7 +85,7 @@ function page() {
         !loading &&
         userAnswers.length === number + 1 &&
         number !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={nextQuestion}>
+          <button className="btn btn-primary mt-3" onClick={nextQuestion}>
             Next Question
           </button>
         ) : null}
