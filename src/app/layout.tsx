@@ -1,4 +1,3 @@
-import "../style/globals.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,6 +14,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
